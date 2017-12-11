@@ -10,7 +10,18 @@
       //the fetch API uses new Javascript Promise API
       fetch(url) //do an ajax call with fetch
         .then((resp) => resp.json()) // convert to json
-          .then((data) => {processResult(data);}) // call the process function passing the data
+          .then(({modelName, pricing, modelDetails, model}) => {
+            let carModel = document.querySelector('.modelInfo');
+            let header = document.querySelector('.modelName').textContent = modelName;
+            let price = document.querySelector('.priceInfo').innerHTML = pricing;
+            let text = document.querySelector('.modelDetails').textContent = modelDetails;
+
+            images.forEach(function(car, index){
+              car.classList.add('nonActive');
+            });
+            //this is a template string constructor
+            document.querySelector(`#${model}`).classList.remove('nonActive');
+          }) // call the process function passing the data
             .catch(function(error){
               //catch ANY error and report it to console
               console.log(error);
@@ -42,27 +53,27 @@
     //    }
     //  }
    }
-   function processResult(data){
-    // console.log(data.modelName);
-    const {modelName, pricing, modelDetails} = data;
-
-    let model = document.querySelector('.modelInfo');
-    let header = document.querySelector('.modelName').textContent = modelName;
-    let price = document.querySelector('.priceInfo').innerHTML = pricing;
-    let text = document.querySelector('.modelDetails').textContent = modelDetails;
-
-    images.forEach(function(car, index){
-      car.classList.add('nonActive');
-    });
-    //this is a template string constructor
-    document.querySelector(`#${data.model}`).classList.remove('nonActive');
-
-    //different way of doing it
-    //
-    // header.textContent = data.modelName;
-    // price.innerHTML = "$"+data.pricing;
-    // text.textContent = data.modelDetails;
-   }
+   // function processResult(data){
+   //  // console.log(data.modelName);
+   //  const {modelName, pricing, modelDetails} = data;
+   //
+   //  let model = document.querySelector('.modelInfo');
+   //  let header = document.querySelector('.modelName').textContent = modelName;
+   //  let price = document.querySelector('.priceInfo').innerHTML = pricing;
+   //  let text = document.querySelector('.modelDetails').textContent = modelDetails;
+   //
+   //  images.forEach(function(car, index){
+   //    car.classList.add('nonActive');
+   //  });
+   //  //this is a template string constructor
+   //  document.querySelector(`#${data.model}`).classList.remove('nonActive');
+   //
+   //  //different way of doing it
+   //  //
+   //  // header.textContent = data.modelName;
+   //  // price.innerHTML = "$"+data.pricing;
+   //  // text.textContent = data.modelDetails;
+   // }
 
 
   // function changeContent() {
