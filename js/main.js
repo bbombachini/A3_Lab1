@@ -27,7 +27,7 @@
               console.log(error);
             });
 
-      //make an AJAX call to the db; handle errors first;
+    //make an AJAX call to the db; handle errors first;
     //   if(!httpRequest) {
     //     alert('giving up... your browser sucks!');
     //     return false;
